@@ -15,14 +15,19 @@ const router = new Router();
 const PORT = process.env.PORT || 3000;
 
 router
-    .get('/timer', (ctx, next) => {
+    .get('/timer/:name', (ctx, next) => {
         console.log('timer router');
+
+        if (ctx.params.name) {
+            ctx.response.ok({ message: ctx.params.name });
+            return;
+        }
         ctx.response.ok({ ok: true });
     })
-    .get('/:two', (ctx) => {
+    .get('/me/:two', (ctx) => {
         ctx.response.ok({ two: ctx.params.two });
     })
-    .get('/:id/three', (ctx, next) => {
+    .get('/me/:id/three', (ctx, next) => {
         const data = { id: 1, hello: 'world' };
 
         if (ctx.params.id !== data.id) {
@@ -30,9 +35,6 @@ router
             return;
         }
         ctx.response.ok(data);
-    })
-    .get('/zahid', (ctx) => {
-        ctx.response.ok({ message: 'r u ok?' });
     });
 // router
 //     .get('/math/add/:arg1/:arg2', (ctx) => {
