@@ -28,4 +28,4 @@
         "eslint-plugin-import": "^2.11.0",
         "nodemon": "^1.17.3"
     }
-};
+}
