@@ -1,10 +1,18 @@
-import Koa from 'koa';
-import Router from 'koa-router';
-import ResponseHandler from 'koa-response-handler';
-import { add, sub } from './math';
+// import Koa from 'koa';
+// import Router from 'koa-router';
+// import ResponseHandler from 'koa-response-handler';
+// import { add, sub } from './math';
+
+const Koa = require('koa');
+const Router = require('koa-router');
+const ResponseHandler = require('koa-response-handler');
+// const addService = require('./math').add;
+require('dotenv').config();
 
 const app = new Koa();
 const router = new Router();
+
+const PORT = process.env.PORT || 3000;
 
 router
     .get('/timer', (ctx, next) => {
@@ -22,17 +30,13 @@ router
             return;
         }
         ctx.response.ok(data);
-    })
-    .get('/math/add/:arg1/:arg2', (ctx) => {
-        const result = add(ctx.params.arg1, ctx.params.arg2);
-
-        ctx.response.ok(result);
-    })
-    .get('/math/sub/:arg1/:arg2', (ctx) => {
-        const result = sub(ctx.params.arg1, ctx.params.arg2);
-
-        ctx.response.ok(result);
     });
+// router
+//     .get('/math/add/:arg1/:arg2', (ctx) => {
+//         const result = addService(ctx.params.arg1, ctx.params.arg2);
+
+//         ctx.response.ok(result);
+//     });
 
 app
     .use(ResponseHandler({ contentType: 'application/json' }));
@@ -51,7 +55,8 @@ app
 // });
 
 app
-    .listen(3001, () => {
+    .listen(PORT, () => {
+        // console.log(process.env.PORT);
         console.log('server running');
     })
     .on('error', (err) => {
