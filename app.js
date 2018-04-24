@@ -30,6 +30,9 @@ router
             return;
         }
         ctx.response.ok(data);
+    })
+    .get('/zahid', (ctx) => {
+        ctx.response.ok({ message: 'r u ok?' });
     });
 // router
 //     .get('/math/add/:arg1/:arg2', (ctx) => {
