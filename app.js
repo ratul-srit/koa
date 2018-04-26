@@ -6,7 +6,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const ResponseHandler = require('koa-response-handler');
-// const addService = require('./math').add;
+const addService = require('./math').add;
 require('dotenv').config();
 
 const app = new Koa();
@@ -19,7 +19,7 @@ router
         console.log('timer router');
 
         if (ctx.params.name) {
-            ctx.response.ok({ message: ctx.params.name });
+            ctx.response.ok({ message: `I am ${ctx.params.name}` });
             return;
         }
         ctx.response.ok({ ok: true });
@@ -36,12 +36,11 @@ router
         }
         ctx.response.ok(data);
     });
-// router
-//     .get('/math/add/:arg1/:arg2', (ctx) => {
-//         const result = addService(ctx.params.arg1, ctx.params.arg2);
-
-//         ctx.response.ok(result);
-//     });
+router
+    .get('/math/add/:arg1/:arg2', (ctx) => {
+        ctx.response.ok(ctx.request);
+        // return;
+    });
 
 app
     .use(ResponseHandler({ contentType: 'application/json' }));
