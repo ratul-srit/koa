@@ -2,12 +2,12 @@
 // import Router from 'koa-router';
 // import ResponseHandler from 'koa-response-handler';
 // import { add, sub } from './math';
+require('dotenv').config();
 
 const Koa = require('koa');
 const Router = require('koa-router');
 const ResponseHandler = require('koa-response-handler');
-const addService = require('./math').add;
-require('dotenv').config();
+// const addService = require('./math').add;
 
 const app = new Koa();
 const router = new Router();
@@ -15,7 +15,7 @@ const router = new Router();
 const PORT = process.env.PORT || 3000;
 
 router
-    .get('/timer/:name', (ctx, next) => {
+    .get('/timer/:name', (ctx) => {
         console.log('timer router');
 
         if (ctx.params.name) {
@@ -23,24 +23,12 @@ router
             return;
         }
         ctx.response.ok({ ok: true });
-    })
-    .get('/me/:two', (ctx) => {
-        ctx.response.ok({ two: ctx.params.two });
-    })
-    .get('/me/:id/three', (ctx, next) => {
-        const data = { id: 1, hello: 'world' };
-
-        if (ctx.params.id !== data.id) {
-            ctx.response.notFound({ message: 'Invalid Request' });
-            return;
-        }
-        ctx.response.ok(data);
     });
-router
-    .get('/math/add/:arg1/:arg2', (ctx) => {
-        ctx.response.ok(ctx.request);
-        // return;
-    });
+// router
+//     .get('/math/add/:arg1/:arg2', (ctx) => {
+//         ctx.response.ok(ctx.request);
+//         // return;
+//     });
 
 app
     .use(ResponseHandler({ contentType: 'application/json' }));

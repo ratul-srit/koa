@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node app.js",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "nodemon": "./node_modules/nodemon/bin/nodemon.js --exec npm run start "
+        "nodemon": "./node_modules/nodemon/bin/nodemon.js --exec npm start "
     },
     "author": "ratul",
     "license": "ISC",
