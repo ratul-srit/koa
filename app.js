@@ -22,7 +22,7 @@ router
             ctx.response.ok({ message: `I am ${ctx.params.name}` });
             return;
         }
-        ctx.response.ok({ ok: "hello" });
+        ctx.response.ok({ ok: true });
     });
 // router
 //     .get('/math/add/:arg1/:arg2', (ctx) => {
